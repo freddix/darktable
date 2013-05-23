@@ -1,12 +1,12 @@
 Summary:	Virtual lighttable and darkroom for photographers
 Name:		darktable
-Version:	1.0.5
+Version:	1.2
 Release:	2
 License:	GPL v3
 Group:		X11/Applications
-Source0:	http://downloads.sourceforge.net/darktable/%{name}-%{version}.tar.gz
-# Source0-md5:	9ad88a1a6b9761fce28c8073d8f47941
-Patch0:		%{name}-rsvg.patch
+Source0:	http://downloads.sourceforge.net/darktable/%{name}-%{version}.tar.xz
+# Source0-md5:	31bfd13d4786aac4f99d5155a811602b
+Patch0:		%{name}-openexr.patch
 URL:		http://darktable.org/
 BuildRequires:	OpenEXR-devel
 BuildRequires:	OpenGL-devel
@@ -48,7 +48,7 @@ and enhance them.
 %setup -q
 %patch0 -p1
 
-sed -i 's/^[ \t]*//' data/%{name}.desktop
+%{__sed} -i 's/^[ \t]*//' data/%{name}.desktop
 
 %build
 install -d build
@@ -65,7 +65,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/darktable/{plugins,plugins/*,plugins/*/*,views}/*.la
+%{__rm} -f $RPM_BUILD_ROOT%{_libdir}/darktable/{plugins,plugins/*,plugins/*/*,views}/*.la
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/pt{_PT,}
 
 %find_lang %{name}
 
@@ -93,6 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/darktable/plugins/lighttable
 %dir %{_libdir}/darktable/views
 %attr(755,root,root) %{_bindir}/darktable
+%attr(755,root,root) %{_bindir}/darktable-cli
 %attr(755,root,root) %{_bindir}/darktable-cltest
 %attr(755,root,root) %{_bindir}/darktable-viewer
 %attr(755,root,root) %{_libdir}/darktable/libdarktable.so

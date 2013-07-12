@@ -1,12 +1,11 @@
 Summary:	Virtual lighttable and darkroom for photographers
 Name:		darktable
-Version:	1.2
-Release:	2
+Version:	1.2.2
+Release:	1
 License:	GPL v3
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/darktable/%{name}-%{version}.tar.xz
-# Source0-md5:	31bfd13d4786aac4f99d5155a811602b
-Patch0:		%{name}-openexr.patch
+# Source0-md5:	df2a2b02d6d855cfd8f1cf77c7e12995
 URL:		http://darktable.org/
 BuildRequires:	OpenEXR-devel
 BuildRequires:	OpenGL-devel
@@ -20,7 +19,6 @@ BuildRequires:	gtk+-devel
 BuildRequires:	intltool
 BuildRequires:	lcms2-devel
 BuildRequires:	lensfun-devel
-BuildRequires:	libglade-devel
 BuildRequires:	libgnome-keyring-devel
 BuildRequires:	libgomp-devel
 BuildRequires:	libgphoto2-devel
@@ -46,7 +44,6 @@ and enhance them.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %{__sed} -i 's/^[ \t]*//' data/%{name}.desktop
 

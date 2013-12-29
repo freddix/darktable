@@ -1,11 +1,11 @@
 Summary:	Virtual lighttable and darkroom for photographers
 Name:		darktable
-Version:	1.2.3
+Version:	1.4
 Release:	1
 License:	GPL v3
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/darktable/%{name}-%{version}.tar.xz
-# Source0-md5:	7eaa89aa5257b5f61cc7462db08ce164
+# Source0-md5:	896416931ded4579f528cd11edad470c
 Patch0:		%{name}-kill-native.patch
 URL:		http://darktable.org/
 BuildRequires:	OpenEXR-devel
@@ -28,7 +28,9 @@ BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
+BuildRequires:	libwebp-devel
 BuildRequires:	libxml2-devel
+BuildRequires:	lua52-devel
 BuildRequires:	sqlite3-devel
 BuildRequires:	zlib-devel
 Requires(post,postun):	/usr/bin/gtk-update-icon-cache
@@ -53,6 +55,7 @@ and enhance them.
 install -d build
 cd build
 %cmake .. \
+	-DBUILD_CMSTEST=ON				\
 	-DDONT_INSTALL_GCONF_SCHEMAS=ON			\
 	-DLENSFUN_INCLUDE_DIR=%{_includedir}/lensfun	\
 	-DUSE_GCONF_BACKEND=OFF
@@ -85,25 +88,30 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc doc/{AUTHORS,ChangeLog,NEWS,README,TODO}
+%attr(755,root,root) %{_bindir}/darktable
+%attr(755,root,root) %{_bindir}/darktable-cli
+%attr(755,root,root) %{_bindir}/darktable-cltest
+%attr(755,root,root) %{_bindir}/darktable-cmstest
+%attr(755,root,root) %{_bindir}/darktable-viewer
+
 %dir %{_libdir}/darktable
+%attr(755,root,root) %{_libdir}/darktable/libdarktable.so
+
 %dir %{_libdir}/darktable/plugins
 %dir %{_libdir}/darktable/plugins/imageio
 %dir %{_libdir}/darktable/plugins/imageio/format
 %dir %{_libdir}/darktable/plugins/imageio/storage
 %dir %{_libdir}/darktable/plugins/lighttable
-%dir %{_libdir}/darktable/views
-%attr(755,root,root) %{_bindir}/darktable
-%attr(755,root,root) %{_bindir}/darktable-cli
-%attr(755,root,root) %{_bindir}/darktable-cltest
-%attr(755,root,root) %{_bindir}/darktable-viewer
-%attr(755,root,root) %{_libdir}/darktable/libdarktable.so
 %attr(755,root,root) %{_libdir}/darktable/plugins/*.so
 %attr(755,root,root) %{_libdir}/darktable/plugins/imageio/format/*.so
 %attr(755,root,root) %{_libdir}/darktable/plugins/imageio/storage/*.so
 %attr(755,root,root) %{_libdir}/darktable/plugins/lighttable/*.so
+
+%dir %{_libdir}/darktable/views
 %attr(755,root,root) %{_libdir}/darktable/views/*.so
+
 %{_datadir}/%{name}
 %{_desktopdir}/darktable.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.*
-%{_mandir}/man1/darktable.1*
+%{_mandir}/man1/darktable*.1*
 

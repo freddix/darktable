@@ -1,7 +1,7 @@
 Summary:	Virtual lighttable and darkroom for photographers
 Name:		darktable
 Version:	1.4
-Release:	1
+Release:	2
 License:	GPL v3
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/darktable/%{name}-%{version}.tar.xz

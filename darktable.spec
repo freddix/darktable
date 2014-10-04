@@ -1,19 +1,21 @@
 Summary:	Virtual lighttable and darkroom for photographers
 Name:		darktable
-Version:	1.4.1
-Release:	2
+Version:	1.4.2
+Release:	1
 License:	GPL v3
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/darktable/%{name}-%{version}.tar.xz
-# Source0-md5:	78252618bb7b1df30109ef5484d46f3c
+# Source0-md5:	f86554329c2c809ffb009244a6f1d643
 Patch0:		%{name}-kill-native.patch
 URL:		http://darktable.org/
+BuildRequires:	GraphicsMagick-devel
 BuildRequires:	OpenEXR-devel
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel
 BuildRequires:	cmake
 BuildRequires:	curl-devel
 BuildRequires:	dbus-glib-devel
+BuildRequires:	desktop-file-utils
 BuildRequires:	exiv2-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+-devel
@@ -112,6 +114,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_datadir}/%{name}
 %{_desktopdir}/darktable.desktop
-%{_iconsdir}/hicolor/*/apps/%{name}.*
+%{_iconsdir}/hicolor/*/apps/%{name}*.*
 %{_mandir}/man1/darktable*.1*
 

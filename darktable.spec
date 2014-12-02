@@ -1,7 +1,7 @@
 Summary:	Virtual lighttable and darkroom for photographers
 Name:		darktable
 Version:	1.5.1
-Release:	1.1
+Release:	2
 License:	GPL v3
 Group:		X11/Applications
 #Source0:	http://downloads.sourceforge.net/darktable/%{name}-%{version}.tar.xz
@@ -39,6 +39,8 @@ Requires(post,postun):	/usr/bin/gtk-update-icon-cache
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		specflags   -Ofast
 
 %description
 darktable is an open source photography workflow application and RAW

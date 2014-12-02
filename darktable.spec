@@ -1,12 +1,12 @@
 Summary:	Virtual lighttable and darkroom for photographers
 Name:		darktable
-Version:	1.4.2
-Release:	1
+Version:	1.5.1
+Release:	1.1
 License:	GPL v3
 Group:		X11/Applications
-Source0:	http://downloads.sourceforge.net/darktable/%{name}-%{version}.tar.xz
-# Source0-md5:	f86554329c2c809ffb009244a6f1d643
-Patch0:		%{name}-kill-native.patch
+#Source0:	http://downloads.sourceforge.net/darktable/%{name}-%{version}.tar.xz
+Source0:	https://github.com/darktable-org/darktable/releases/download/release-%{version}/%{name}-%{version}.tar.xz
+# Source0-md5:	8c84dc628c93670fdcfa37522a60f084
 URL:		http://darktable.org/
 BuildRequires:	GraphicsMagick-devel
 BuildRequires:	OpenEXR-devel
@@ -49,15 +49,15 @@ and enhance them.
 
 %prep
 %setup -q
-%patch0 -p1
 
-%{__sed} -i 's/^[ \t]*//' data/%{name}.desktop
+%{__sed} -i 's/^[ \t]*//' data/%{name}.desktop.in
 
 %build
 install -d build
 cd build
 %cmake .. \
 	-DBUILD_CMSTEST=ON				\
+	-DCUSTOM_CFLAGS=ON				\
 	-DDONT_INSTALL_GCONF_SCHEMAS=ON			\
 	-DLENSFUN_INCLUDE_DIR=%{_includedir}/lensfun	\
 	-DUSE_GCONF_BACKEND=OFF

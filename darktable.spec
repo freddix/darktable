@@ -1,12 +1,12 @@
 Summary:	Virtual lighttable and darkroom for photographers
 Name:		darktable
-Version:	1.5.1
-Release:	2
+Version:	1.6.0
+Release:	1
 License:	GPL v3
 Group:		X11/Applications
 #Source0:	http://downloads.sourceforge.net/darktable/%{name}-%{version}.tar.xz
 Source0:	https://github.com/darktable-org/darktable/releases/download/release-%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	8c84dc628c93670fdcfa37522a60f084
+# Source0-md5:	0010474f917ddec6b8ca3b257632b64c
 URL:		http://darktable.org/
 BuildRequires:	GraphicsMagick-devel
 BuildRequires:	OpenEXR-devel
@@ -22,10 +22,10 @@ BuildRequires:	gtk+-devel
 BuildRequires:	intltool
 BuildRequires:	lcms2-devel
 BuildRequires:	lensfun-devel
-BuildRequires:	libgnome-keyring-devel
 BuildRequires:	libgomp-devel
 BuildRequires:	libgphoto2-devel
 BuildRequires:	libjpeg-devel
+BuildRequires:	libsecret-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel
 BuildRequires:	libtiff-devel
@@ -62,7 +62,9 @@ cd build
 	-DCUSTOM_CFLAGS=ON				\
 	-DDONT_INSTALL_GCONF_SCHEMAS=ON			\
 	-DLENSFUN_INCLUDE_DIR=%{_includedir}/lensfun	\
-	-DUSE_GCONF_BACKEND=OFF
+	-DUSE_GCONF_BACKEND=OFF				\
+	-DUSE_GNOME_KEYRING=OFF				\
+	-DUSE_LIBSECRET=ON
 %{__make}
 
 %install

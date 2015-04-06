@@ -1,12 +1,12 @@
 Summary:	Virtual lighttable and darkroom for photographers
 Name:		darktable
-Version:	1.6.1
+Version:	1.6.3
 Release:	1
 License:	GPL v3
 Group:		X11/Applications
 #Source0:	http://downloads.sourceforge.net/darktable/%{name}-%{version}.tar.xz
 Source0:	https://github.com/darktable-org/darktable/releases/download/release-%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	694ee88530b7a5786ee13eae0175d20d
+# Source0-md5:	94f5e1512275be82d389161aa552f235
 URL:		http://darktable.org/
 BuildRequires:	GraphicsMagick-devel
 BuildRequires:	OpenEXR-devel
